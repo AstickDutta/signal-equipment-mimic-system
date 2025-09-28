@@ -100,7 +100,7 @@ The application supports flexible configuration through environment variables:
 
 ```bash
 # Database Configuration
-DATABASE_URL=postgresql://postgres:postgres@db:5432/signal_equipment
+DATABASE_URL=postgresql://postgres:root123@db:5432/signal_equipment
 
 # API Configuration  
 API_HOST=0.0.0.0
