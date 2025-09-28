@@ -14,13 +14,13 @@ This is a FastAPI backend that mimics signal equipment. It provides APIs to mana
 RESTRICTIVE aspects
 
 - **Containerized** - Full Docker support with PostgreSQL database integration
-- ** Advanced CI/CD** - Complete GitHub Actions pipeline with automated workflows
-- ** Quality Assurance** - Automated testing and comprehensive code quality checks
-- ** Code Standards** - Automatic code formatting with Black and linting with Flake8
-- ** Test Coverage** - Comprehensive unit tests with 89% coverage reporting
-- ** Container Registry** - Automated Docker image building and registry pushing
-- ** Security First** - Multi-layer security scanning with Trivy and Bandit tools
-- ** Performance** - Optimized database queries and efficient API responses
+- **Advanced CI/CD** - Complete GitHub Actions pipeline with automated workflows
+- **Quality Assurance** - Automated testing and comprehensive code quality checks
+- **Code Standards** - Automatic code formatting with Black and linting with Flake8
+- **Test Coverage** - Comprehensive unit tests with 89% coverage reporting
+- **Container Registry** - Automated Docker image building and registry pushing
+- **Security First** - Multi-layer security scanning with Trivy and Bandit tools
+- **Performance** - Optimized database queries and efficient API responses
 
 ## Technology Stack
 
