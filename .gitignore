@@ -76,3 +76,7 @@ Thumbs.db
 docker-compose.override.yml
 *.env
 .env.local
+
+# Executables
+*.exe
+rustup-init.exe

@@ -1,4 +1,4 @@
-# 🚦 Signal Equipment Backend API
+#  Signal Equipment Backend API
 
 > **A modern, high-performance FastAPI backend that simulates signal equipment management with comprehensive CI/CD automation.**
 
@@ -10,7 +10,9 @@ This is a FastAPI backend that mimics signal equipment. It provides APIs to mana
 - 🔄 **Aspect Control** - Create, read, and update aspects with state management
 - 📊 **State Monitoring** - Get real-time aspect states and configurations
 - 📋 **Signal Analytics** - Get all aspects of a signal with detailed information
-- 🧠 **Smart Logic** - Business logic for mutual exclusivity between PERMISSIVE and RESTRICTIVE aspects
+- 🧠 **Smart Logic** - Business logic for mutual exclusivity between PERMISSIVE and 
+RESTRICTIVE aspects
+
 - 🐳 **Containerized** - Full Docker support with PostgreSQL database integration
 - **🚀 Advanced CI/CD** - Complete GitHub Actions pipeline with automated workflows
 - **🔧 Quality Assurance** - Automated testing and comprehensive code quality checks
@@ -36,15 +38,12 @@ This is a FastAPI backend that mimics signal equipment. It provides APIs to mana
 - **Python**: 3.11+ (recommended 3.11.5+)
 - **Docker**: Latest version with Docker Compose
 - **PostgreSQL**: 15+ (when running locally without Docker)
-- **Memory**: Minimum 2GB RAM for optimal performance
-- **Storage**: 1GB free space for dependencies and database
 
 ## 🚀 Quick Start with Docker
 
 1. **Clone the repository**
    ```bash
    git clone <repository-url>
-   cd signal-equipment-backend
    ```
 
 2. **Launch with Docker Compose**
@@ -73,23 +72,18 @@ The API will be available at **http://localhost:8000** with interactive document
    ```bash
    python -m venv .venv
    ```
-
-3. **Activate the virtual environment**
-   - **Windows**: `.venv\Scripts\activate`
-   - **Linux/Mac**: `source .venv/bin/activate`
-
-4. **Install dependencies**
+3. **Install dependencies**
    ```bash
    pip install -r requirements.txt
    ```
 
-5. **Set up environment variables**
+4. **Set up environment variables**
    ```bash
-   cp .env.example .env
+   .env
    # Edit .env with your configuration
    ```
 
-6. **Run the development server**
+5. **Run the development server**
    ```bash
    python run.py
    ```
@@ -99,23 +93,18 @@ The API will be available at **http://localhost:8000** with interactive document
 The application supports flexible configuration through environment variables:
 
 ```bash
-# Database Configuration
-DATABASE_URL=postgresql://postgres:postgres@db:5432/signal_equipment
+DATABASE_URL=postgresql://postgres:password@db:5432/signal_equipment
 
-# API Configuration  
 API_HOST=0.0.0.0
 API_PORT=8000
 API_RELOAD=true
 
-# Environment Settings
 ENVIRONMENT=development
 DEBUG=true
 
-# Logging Configuration
 LOG_LEVEL=INFO
 LOG_FORMAT=detailed
 
-# CORS Settings
 CORS_ORIGINS=*
 CORS_METHODS=*
 CORS_HEADERS=*
@@ -125,31 +114,25 @@ CORS_HEADERS=*
 
 ### Running Tests Locally
 ```bash
-# Run all tests
 pytest
 
-# Run with coverage report
 pytest --cov=app --cov-report=html
 
-# Run specific test file
 pytest tests/test_api.py -v
 ```
 
 ### Code Quality Checks
 ```bash
-# Format code with Black
 black app/ tests/
 
-# Lint with Flake8
 flake8 app/ tests/
 
-# Type checking (if mypy is configured)
 mypy app/
 ```
 
 ## 🚀 CI/CD Pipeline
 
-Our comprehensive CI/CD pipeline includes:
+My comprehensive CI/CD pipeline includes:
 
 ### 🔄 Continuous Integration
 - **Automated Testing** - Full test suite execution on every push
@@ -191,10 +174,8 @@ Our comprehensive CI/CD pipeline includes:
 
 ### Production Deployment
 ```bash
-# Build production image
 docker build -t signal-equipment-api .
 
-# Run with production settings
 docker run -p 8000:8000 \
   -e DATABASE_URL=postgresql://user:pass@host:5432/db \
   signal-equipment-api
@@ -202,7 +183,6 @@ docker run -p 8000:8000 \
 
 ### Development with Docker Compose
 ```yaml
-# docker-compose.override.yml for development
 version: '3.8'
 services:
   backend:
@@ -229,21 +209,8 @@ services:
 - **Response Caching** - Strategic caching for frequently accessed data
 - **Resource Monitoring** - Built-in health checks and monitoring endpoints
 
-## 🤝 Contributing
 
-1. **Fork the repository**
-2. **Create a feature branch** (`git checkout -b feature/amazing-feature`)
-3. **Make your changes** with proper testing
-4. **Run quality checks** (`black app/ && flake8 app/`)
-5. **Commit your changes** (`git commit -m 'Add amazing feature'`)
-6. **Push to the branch** (`git push origin feature/amazing-feature`)
-7. **Open a Pull Request** with detailed description
-
-## 📄 License
-
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
-
-## 🆘 Support & Troubleshooting
+### Support & Troubleshooting
 
 ### Common Issues
 
@@ -267,14 +234,3 @@ taskkill /PID <process_id> /F
 cat .env
 python -c "from dotenv import load_dotenv; load_dotenv(); import os; print(os.getenv('DATABASE_URL'))"
 ```
-
-### Getting Help
-
-- 📧 **Email**: support@signal-equipment-api.com
-- 🐛 **Issues**: [GitHub Issues](https://github.com/YOUR_USERNAME/YOUR_REPO_NAME/issues)
-- 📖 **Documentation**: [Wiki](https://github.com/YOUR_USERNAME/YOUR_REPO_NAME/wiki)
-- 💬 **Discussions**: [GitHub Discussions](https://github.com/YOUR_USERNAME/YOUR_REPO_NAME/discussions)
-
----
-
-**Made with ❤️ by the Signal Equipment Team** | **Last Updated**: December 2024
