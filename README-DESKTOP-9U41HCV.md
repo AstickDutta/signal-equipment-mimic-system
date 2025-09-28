@@ -38,15 +38,12 @@ RESTRICTIVE aspects
 - **Python**: 3.11+ (recommended 3.11.5+)
 - **Docker**: Latest version with Docker Compose
 - **PostgreSQL**: 15+ (when running locally without Docker)
-- **Memory**: Minimum 2GB RAM for optimal performance
-- **Storage**: 1GB free space for dependencies and database
 
 ## 🚀 Quick Start with Docker
 
 1. **Clone the repository**
    ```bash
    git clone <repository-url>
-   cd signal-equipment-backend
    ```
 
 2. **Launch with Docker Compose**
@@ -75,23 +72,18 @@ The API will be available at **http://localhost:8000** with interactive document
    ```bash
    python -m venv .venv
    ```
-
-3. **Activate the virtual environment**
-   - **Windows**: `.venv\Scripts\activate`
-   - **Linux/Mac**: `source .venv/bin/activate`
-
-4. **Install dependencies**
+3. **Install dependencies**
    ```bash
    pip install -r requirements.txt
    ```
 
-5. **Set up environment variables**
+4. **Set up environment variables**
    ```bash
-   cp .env.example .env
+   .env
    # Edit .env with your configuration
    ```
 
-6. **Run the development server**
+5. **Run the development server**
    ```bash
    python run.py
    ```
