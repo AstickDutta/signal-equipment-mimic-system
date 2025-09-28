@@ -11,6 +11,7 @@ env:
   IMAGE_NAME: signal-equipment-api
 
 jobs:
+  # Code Quality and Testing Job
   test-and-format:
     name: Test & Code Quality
     runs-on: ubuntu-latest
@@ -55,13 +56,13 @@ jobs:
 
       - name: Code formatting check with Black
         run: |
-          echo "Checking code formatting with Black..."
+          echo "🎨 Checking code formatting with Black..."
           black --check --diff --color .
 
       - name: Code formatting (auto-fix on PR)
         if: github.event_name == 'pull_request'
         run: |
-          echo "Auto-formatting code with Black..."
+          echo "🔧 Auto-formatting code with Black..."
           black .
           git config --local user.email "action@github.com"
           git config --local user.name "GitHub Action"
@@ -70,7 +71,7 @@ jobs:
 
       - name: Run linting with flake8
         run: |
-          echo "Running linting checks..."
+          echo "🔍 Running linting checks..."
           pip install flake8
           flake8 app/ tests/ --max-line-length=88 --extend-ignore=E203,W503
 
@@ -78,7 +79,7 @@ jobs:
         env:
           DATABASE_URL: postgresql://postgres:postgres@localhost:5432/test_signal_equipment
         run: |
-          echo "Running unit tests with coverage..."
+          echo "🧪 Running unit tests with coverage..."
           pytest tests/ -v --tb=short --cov=app --cov-report=xml --cov-report=html --cov-report=term-missing
 
       - name: Upload coverage to Codecov
@@ -133,6 +134,7 @@ jobs:
           name: bandit-report
           path: bandit-report.json
 
+  # Docker Build and Push Job
   build-and-push:
     name: Build & Push Docker Image
     runs-on: ubuntu-latest
@@ -192,41 +194,41 @@ jobs:
       - name: Run Docker container test
         if: github.event_name != 'pull_request'
         run: |
-          echo "Testing Docker container..."
+          echo "🐳 Testing Docker container..."
           docker run --rm -d --name test-container -p 8080:8000 \
             -e DATABASE_URL=sqlite:///./test.db \
             ${{ secrets.DOCKER_USERNAME }}/${{ env.IMAGE_NAME }}:latest
           
-          echo "Waiting for container to start..."
+          echo "⏳ Waiting for container to start..."
           sleep 15
           
-          echo "Checking container status..."
-          docker ps | grep test-container || (echo "Container not running" && exit 1)
+          echo "🔍 Checking container status..."
+          docker ps | grep test-container || (echo "❌ Container not running" && exit 1)
           
-          echo "Container logs:"
+          echo "📋 Container logs:"
           docker logs test-container
           
-          echo "Testing health endpoint..."
+          echo "🏥 Testing health endpoint..."
           for i in {1..5}; do
             if curl -f http://localhost:8080/health; then
-              echo "Health check passed!"
+              echo "✅ Health check passed!"
               break
             else
-              echo "Attempt $i failed, retrying in 3 seconds..."
+              echo "⏳ Attempt $i failed, retrying in 3 seconds..."
               sleep 3
             fi
             if [ $i -eq 5 ]; then
-              echo "Health check failed after 5 attempts"
+              echo "❌ Health check failed after 5 attempts"
               docker logs test-container
               exit 1
             fi
           done
           
-          echo "Testing main endpoint..."
-          curl -f http://localhost:8080/ || (echo "Main endpoint failed" && docker logs test-container && exit 1)
+          echo "🧪 Testing main endpoint..."
+          curl -f http://localhost:8080/ || (echo "❌ Main endpoint failed" && docker logs test-container && exit 1)
           
           docker stop test-container
-          echo "Docker container test passed!"
+          echo "✅ Docker container test passed!"
 
   # Deployment Job (optional)
   deploy:
@@ -239,6 +241,6 @@ jobs:
     steps:
       - name: Deploy to staging
         run: |
-          echo "Deploying to staging environment..."
+          echo "🚀 Deploying to staging environment..."
           echo "Image: ${{ secrets.DOCKER_USERNAME }}/${{ env.IMAGE_NAME }}:main"
           # Add your deployment commands here
