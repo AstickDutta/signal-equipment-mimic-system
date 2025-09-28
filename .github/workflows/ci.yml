@@ -11,7 +11,6 @@ env:
   IMAGE_NAME: signal-equipment-api
 
 jobs:
-  # Code Quality and Testing Job
   test-and-format:
     name: Test & Code Quality
     runs-on: ubuntu-latest
@@ -95,7 +94,7 @@ jobs:
           name: coverage-report
           path: htmlcov/
 
-
+  # Security Scanning Job
   security-scan:
     name: Security Scan
     runs-on: ubuntu-latest
@@ -133,8 +132,7 @@ jobs:
         with:
           name: bandit-report
           path: bandit-report.json
-
-  # Docker Build and Push Job
+          
   build-and-push:
     name: Build & Push Docker Image
     runs-on: ubuntu-latest
@@ -230,7 +228,7 @@ jobs:
           docker stop test-container
           echo "✅ Docker container test passed!"
 
-
+  # Deployment Job (optional)
   deploy:
     name: Deploy to Staging
     runs-on: ubuntu-latest
