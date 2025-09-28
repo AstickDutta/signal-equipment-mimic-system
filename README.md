@@ -64,8 +64,8 @@ The API will be available at **http://localhost:8000** with interactive document
 
 1. **Clone the repository**
    ```bash
-   git clone <repository-url>
-   cd signal-equipment-backend
+   git clone https://github.com/AstickDutta/signal-equipment-mimic-system.git
+   cd signal-equipment-mimic-system
    ```
 
 2. **Create and activate virtual environment**
