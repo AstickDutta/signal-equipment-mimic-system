@@ -1,0 +1,291 @@
+{
+	"info": {
+		"_postman_id": "b5a7e8d0-5f1a-4e3e-8b1a-9b9b9b9b9b9b",
+		"name": "Signal Equipment API",
+		"description": "A collection for testing the Signal Equipment API",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Signals",
+			"item": [
+				{
+					"name": "Create Signal",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"id\": 1,\n  \"name\": \"signal_1\"\n}"
+						},
+						"url": {
+							"raw": "http://localhost:8000/signals/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"signals",
+								""
+							]
+						},
+						"description": "Create a new signal with a unique ID and name"
+					},
+					"response": []
+				},
+				{
+					"name": "Get All Signals",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8000/signals/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"signals",
+								""
+							]
+						},
+						"description": "Get a list of all signals"
+					},
+					"response": []
+				},
+				{
+					"name": "Get Signal by ID",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8000/signals/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"signals",
+								"1"
+							]
+						},
+						"description": "Get a specific signal by its ID"
+					},
+					"response": []
+				},
+				{
+					"name": "Get Signal Aspects",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8000/signals/1/aspects",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"signals",
+								"1",
+								"aspects"
+							]
+						},
+						"description": "Get all aspects of a specific signal"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Aspects",
+			"item": [
+				{
+					"name": "Create Aspect (PERMISSIVE)",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"type\": \"PERMISSIVE\"\n}"
+						},
+						"url": {
+							"raw": "http://localhost:8000/signals/1/aspects/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"signals",
+								"1",
+								"aspects",
+								""
+							]
+						},
+						"description": "Create a PERMISSIVE aspect for a signal"
+					},
+					"response": []
+				},
+				{
+					"name": "Create Aspect (RESTRICTIVE)",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"type\": \"RESTRICTIVE\"\n}"
+						},
+						"url": {
+							"raw": "http://localhost:8000/signals/1/aspects/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"signals",
+								"1",
+								"aspects",
+								""
+							]
+						},
+						"description": "Create a RESTRICTIVE aspect for a signal"
+					},
+					"response": []
+				},
+				{
+					"name": "Create Aspect (OVERRIDE)",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"type\": \"OVERRIDE\"\n}"
+						},
+						"url": {
+							"raw": "http://localhost:8000/signals/1/aspects/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"signals",
+								"1",
+								"aspects",
+								""
+							]
+						},
+						"description": "Create an OVERRIDE aspect for a signal"
+					},
+					"response": []
+				},
+				{
+					"name": "Get Aspect by ID",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8000/aspects/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"aspects",
+								"1"
+							]
+						},
+						"description": "Get a specific aspect by its ID"
+					},
+					"response": []
+				},
+				{
+					"name": "Update Aspect State (ON)",
+					"request": {
+						"method": "PATCH",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"is_on\": true\n}"
+						},
+						"url": {
+							"raw": "http://localhost:8000/aspects/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"aspects",
+								"1"
+							]
+						},
+						"description": "Update an aspect's state to ON"
+					},
+					"response": []
+				},
+				{
+					"name": "Update Aspect State (OFF)",
+					"request": {
+						"method": "PATCH",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"is_on\": false\n}"
+						},
+						"url": {
+							"raw": "http://localhost:8000/aspects/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"aspects",
+								"1"
+							]
+						},
+						"description": "Update an aspect's state to OFF"
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
