@@ -5,10 +5,8 @@ from dotenv import load_dotenv
 from app.api.api import api_router
 from app.config.database import engine, Base
 
-# Load environment variables from .env file
 load_dotenv()
 
-# Create database tables
 Base.metadata.create_all(bind=engine)
 
 app = FastAPI(
@@ -17,16 +15,14 @@ app = FastAPI(
     version="1.0.0",
 )
 
-# Add CORS middleware
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["*"],  # In production, replace with specific origins
+    allow_origins=["*"],
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
 )
 
-# Include API router
 app.include_router(api_router)
 
 

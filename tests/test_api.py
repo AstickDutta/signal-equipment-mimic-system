@@ -9,14 +9,11 @@ from app.config.database import Base
 from app.db.session import get_db
 from app.main import app
 
-# Use environment variable for test database URL, fallback to in-memory SQLite
 TEST_DATABASE_URL = os.getenv("DATABASE_URL", "sqlite:///:memory:")
 
 if TEST_DATABASE_URL.startswith("postgresql://"):
-    # PostgreSQL test configuration
     engine = create_engine(TEST_DATABASE_URL)
 else:
-    # SQLite test configuration
     engine = create_engine(
         TEST_DATABASE_URL,
         connect_args={"check_same_thread": False},
@@ -25,11 +22,9 @@ else:
 
 TestingSessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)
 
-# Create test database tables
 Base.metadata.create_all(bind=engine)
 
 
-# Override the get_db dependency for testing
 def override_get_db():
     try:
         db = TestingSessionLocal()
@@ -63,13 +58,11 @@ def test_get_signals():
 
 
 def test_create_aspect():
-    # Create a signal first
     client.post(
         "/signals/",
         json={"id": 2, "name": "test_signal_2"},
     )
 
-    # Create an aspect for the signal
     response = client.post(
         "/signals/2/aspects/",
         json={"type": "PERMISSIVE"},
@@ -82,7 +75,6 @@ def test_create_aspect():
 
 
 def test_update_aspect():
-    # Create signal and aspect
     client.post(
         "/signals/",
         json={"id": 3, "name": "signal_for_update"},
@@ -93,7 +85,6 @@ def test_update_aspect():
     )
     aspect_id = response.json()["id"]
 
-    # Update the aspect state
     response = client.patch(
         f"/aspects/{aspect_id}",
         json={"is_on": True},
@@ -104,7 +95,7 @@ def test_update_aspect():
 
 
 def test_get_signal_aspects():
-    # Create signal with multiple aspects
+
     client.post(
         "/signals/",
         json={"id": 4, "name": "multi_aspect_signal"},
@@ -118,7 +109,7 @@ def test_get_signal_aspects():
         json={"type": "OVERRIDE"},
     )
 
-    # Get all aspects for the signal
+
     response = client.get("/signals/4/aspects")
     assert response.status_code == 200
     data = response.json()
@@ -126,20 +117,20 @@ def test_get_signal_aspects():
     assert data["signal_name"] == "multi_aspect_signal"
     assert len(data["aspects"]) == 2
 
-    # Verify aspect types
+
     aspect_types = [aspect["type"] for aspect in data["aspects"]]
     assert "PERMISSIVE" in aspect_types
     assert "OVERRIDE" in aspect_types
 
 
 def test_mutual_exclusivity():
-    # Create signal
+
     client.post(
         "/signals/",
         json={"id": 5, "name": "exclusivity_test"},
     )
 
-    # Create PERMISSIVE and RESTRICTIVE aspects
+
     perm_response = client.post(
         "/signals/5/aspects/",
         json={"type": "PERMISSIVE"},
@@ -152,14 +143,14 @@ def test_mutual_exclusivity():
     perm_id = perm_response.json()["id"]
     rest_id = rest_response.json()["id"]
 
-    # Turn on PERMISSIVE
+
     response = client.patch(
         f"/aspects/{perm_id}",
         json={"is_on": True},
     )
     assert response.status_code == 200
 
-    # Try to turn on RESTRICTIVE (should fail)
+
     response = client.patch(
         f"/aspects/{rest_id}",
         json={"is_on": True},
@@ -184,6 +175,6 @@ def test_root_endpoint():
 def cleanup_database():
     """Clean up database after each test"""
     yield
-    # Clean up tables after each test
+
     Base.metadata.drop_all(bind=engine)
     Base.metadata.create_all(bind=engine)

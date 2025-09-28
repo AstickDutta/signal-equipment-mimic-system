@@ -29,7 +29,7 @@ class SignalBase(BaseModel):
 
 
 class SignalCreate(SignalBase):
-    id: int = Field(..., gt=0)  # Ensure ID is a positive integer
+    id: int = Field(..., gt=0)
 
 
 class Signal(SignalBase):
