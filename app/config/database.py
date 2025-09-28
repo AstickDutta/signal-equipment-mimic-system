@@ -5,7 +5,7 @@ from sqlalchemy.orm import sessionmaker
 
 # Get database URL from environment variable, fallback to PostgreSQL for local dev
 DATABASE_URL = os.getenv(
-    "DATABASE_URL", "postgresql://postgres:root123@localhost:5432/signal_equipment"
+    "DATABASE_URL", "postgresql://postgres:root@localhost:5432/signal_equipment"
 )
 
 # Handle PostgreSQL URL format
